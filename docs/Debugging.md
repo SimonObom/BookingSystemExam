@@ -70,4 +70,4 @@ Testet `Search_WhenSearchTermHasDifferentCasing_ReturnsBooking()` söker på "av
 
 ## 10. Hur hade applikationen kunnat utvecklas?
 
-Applikationen hade kunnat utvecklas genom att använda en DI-container för att registrera och koppla ihop programmets beroenden. Programmet använder redan dependency injection via konstruktorerna. Med NuGet-paketet `Microsoft.Extensions.DependencyInjection` skulle skapandet av objekten och hanteringen av deras livstider kunna överlåtas till containern. Det kan underlätta när programmet får fler tjänster och beroenden. För programmets nuvarande storlek fungerar detta dock.
+Applikationen hade kunnat utvecklas genom att använda en DI-container för att registrera och koppla ihop programmets beroenden. Programmet använder redan dependency injection via konstruktorerna, men med NuGet-paketet `Microsoft.Extensions.DependencyInjection` skulle skapandet av objekten och hanteringen av deras livstider kunna göras via containern. Det kan underlätta när programmet får fler tjänster och beroenden. För programmets nuvarande storlek fungerar detta dock.
