@@ -37,9 +37,9 @@ Sökningen ska fungera oavsett om söktermen innehåller stora eller små bokst�
 
 ## 7. Vad ändrade du?
 
-Jag lade till en `StringComparison.OrdinalIgnoreCase` som argument i anropet till `Contains`. Detta gör så att sökningen i `CustomerName` efter `searchTerm` ignorerar skillnader mellan stora och små bokstäver. 
+Jag lade till en `StringComparison.OrdinalIgnoreCase` som ett argument i anropet till `Contains`. Detta gör så att sökningen i `CustomerName` efter `searchTerm` ignorerar skillnader mellan stora och små bokstäver. 
 
-Felet hade även exempelvis kunnat lösas med att konvertera både `CustomerName` samt `searchTerm` till ett gemensamt tillstånd vid jämförelsen, med `ToLower()`  eller `ToUpper()`. Det hade kunnat se ut på följande sätt:
+Felet hade även exempelvis kunnat lösas med att konvertera både `CustomerName` samt `searchTerm` till små eller stora bokstäver vid jämförelsen, med `ToLower()`  eller `ToUpper()`. Detta hade  då kunnat se ut på följande sätt:
 
 ```csharp
 
@@ -54,7 +54,7 @@ public IReadOnlyList<Booking> Search(string searchTerm)
 
 ```
 
-Jag föredrar dock OrdinalIgnoreCase för den känns tydligare för den som läser koden, även om resultatet blir detsamma.
+Jag föredrar dock `OrdinalIgnoreCase`, eftersom den tydligare visar för den som läser koden att jämförelsen ska ignorera skillnader mellan stora och små bokstäver.
 
 
 
