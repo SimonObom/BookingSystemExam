@@ -77,8 +77,26 @@ public class BookingConsole(BookingService service)
         var startTime = ReadTime("Start time (HH:mm): ");
         var endTime = ReadTime("End time (HH:mm): ");
 
-        Console.Write("Participants: ");
-        var participants = int.Parse(Console.ReadLine() ?? string.Empty);
+        bool inputFaulty = true;
+        int participants = 0;
+
+        while (inputFaulty)
+        {
+            Console.Write("Participants: ");
+            if (!int.TryParse(Console.ReadLine(), out participants))
+            {
+                Console.WriteLine("Number of participants can't be written in text.");
+            }
+            else if (participants <= 0)
+            {
+                Console.WriteLine("Participants must be more than zero.");
+            }
+            else
+            {
+                inputFaulty = false;
+            }
+        }
+        
 
         var booking = new Booking
         {
