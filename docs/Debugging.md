@@ -68,3 +68,6 @@ Jag körde applikationen igen och sökte på sparade namn med olika kombinatione
 
 Testet `Search_WhenSearchTermHasDifferentCasing_ReturnsBooking()` söker på "avanoria" och kontrollerar att bokningen för "Avanoria AB" returneras. Om sökningen blir skiftlägeskänslig igen misslyckas detta test vilket gör att felet kan upptäckas när testerna körs.
 
+## 10. Hur hade applikationen kunnat utvecklas?
+
+Applikationen hade kunnat utvecklas genom att använda en DI-container för att registrera och koppla ihop programmets beroenden. Programmet använder redan dependency injection via konstruktorerna. Med NuGet-paketet `Microsoft.Extensions.DependencyInjection` skulle skapandet av objekten och hanteringen av deras livstider kunna överlåtas till containern. Det kan underlätta när programmet får fler tjänster och beroenden. För programmets nuvarande storlek fungerar detta dock.
