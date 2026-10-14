@@ -28,7 +28,7 @@ public class BookingService(IBookingRepository repository)
         return repository.GetAll()
             .Where(booking =>
                 !booking.IsCancelled &&
-                booking.CustomerName.Contains(searchTerm))
+                booking.CustomerName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
             .ToList();
     }
 
@@ -50,6 +50,19 @@ public class BookingService(IBookingRepository repository)
 
     public BookingResult Cancel(int bookingId)
     {
+        var bookings = repository.GetAll();
+
+        foreach (var booking in bookings)
+        {
+            if (bookingId == booking.Id)
+            {
+                if (booking.IsCancelled)
+                {
+                    return BookingResult.Failure("The booking is already cancelled.");
+                }
+               
+            }
+        }
         throw new NotImplementedException();
     }
 
