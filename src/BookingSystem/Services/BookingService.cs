@@ -60,10 +60,16 @@ public class BookingService(IBookingRepository repository)
                 {
                     return BookingResult.Failure("The booking is already cancelled.");
                 }
-               
+
+                booking.IsCancelled = true;
+                repository.Save();
+
+                return BookingResult.Success("Booking is now cancelled.");
             }
         }
-        throw new NotImplementedException();
+
+        return BookingResult.Failure("The booking was not found.");
+
     }
 
     private BookingResult Validate(Booking booking)

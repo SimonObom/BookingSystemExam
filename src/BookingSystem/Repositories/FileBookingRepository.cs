@@ -18,6 +18,8 @@ public class FileBookingRepository(string filePath) : IBookingRepository
 
     public void Save()
     {
+        Console.WriteLine($"Saving to: {Path.GetFullPath(filePath)}");
+
         var directory = Path.GetDirectoryName(filePath);
 
         if (!string.IsNullOrWhiteSpace(directory))
