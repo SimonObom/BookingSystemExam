@@ -47,5 +47,5 @@ Jag körde applikationen igen och sökte på sparade namn med olika kombinatione
 
 ## 9. Vilket automatiserat test skyddar mot att felet återkommer?
 
-Testet ```csharp Search\_WhenSearchTermHasDifferentCasing\_ReturnsBooking() ``` söker på "avanoria" och kontrollerar att bokningen för "Avanoria AB" returneras. Om sökningen blir skiftlägeskänslig igen misslyckas detta test vilket gör att felet kan upptäckas när testerna körs.
+Testet `Search_WhenSearchTermHasDifferentCasing_ReturnsBooking()` söker på "avanoria" och kontrollerar att bokningen för "Avanoria AB" returneras. Om sökningen blir skiftlägeskänslig igen misslyckas detta test vilket gör att felet kan upptäckas när testerna körs.
 
