@@ -27,15 +27,15 @@ Sökningen ska fungera oavsett om söktermen innehåller stora eller små bokst�
 
 ## 5. Vilken del av koden orsakade felet?
 
-BookingService.Search använder sig utav Contains för att hitta bokningar där namnet innehåller söktermen, även delar av söktermen. Contains saknade dock inställningen för att ignorera skillnader mellan stora och små bokstäver.
+`BookingService.Search` använder sig utav `Contains` för att hitta bokningar där namnet innehåller delar eller hela söktermen. `Contains` saknade dock inställningen för att ignorera skillnader mellan stora och små bokstäver.
 
 ## 6. Varför gav koden ett felaktigt resultat?
 
-Contains var skiftlägeskänslig och därför hittades bokningen bara om söktermens stora och små bokstäver matchade motsvarande del av det sparade namnet.
+`Contains` var skiftlägeskänslig och därför hittades bokningen bara om söktermens stora och små bokstäver matchade motsvarande del av det sparade namnet.
 
 ## 7. Vad ändrade du?
 
-Jag lade till en StringComparison.OrdinalIgnoreCase som argument i anropet till Contains. Detta gör så att sökningen i CustomerName efter searchTerm ignorerar skillnader mellan stora och små bokstäver.
+Jag lade till en `StringComparison.OrdinalIgnoreCase` som argument i anropet till `Contains`. Detta gör så att sökningen i `CustomerName` efter `searchTerm` ignorerar skillnader mellan stora och små bokstäver.
 
 
 
