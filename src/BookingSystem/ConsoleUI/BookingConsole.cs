@@ -55,7 +55,16 @@ public class BookingConsole(BookingService service)
     {
         Console.Write("Customer name: ");
         var searchTerm = Console.ReadLine() ?? string.Empty;
-        ShowBookings(service.Search(searchTerm));
+
+        var bookings = service.Search(searchTerm);
+
+        if (bookings.Count == 0)
+        {
+            Console.WriteLine("No results found.");
+            return;
+        }
+
+        ShowBookings(bookings);
     }
 
     private void CreateBooking()
