@@ -27,15 +27,34 @@ Sökningen ska fungera oavsett om söktermen innehåller stora eller små bokst�
 
 ## 5. Vilken del av koden orsakade felet?
 
-`BookingService.Search` använder sig utav `Contains` för att hitta bokningar där namnet innehåller delar eller hela söktermen. `Contains` saknade dock inställningen för att ignorera skillnader mellan stora och små bokstäver.
+`BookingService.Search` använder sig utav `Contains` för att hitta bokningar där namnet innehåller delar eller hela söktermen. `Contains` saknade dock inställningen eller annan metod för att ignorera skillnader mellan stora och små bokstäver.
 
 ## 6. Varför gav koden ett felaktigt resultat?
 
 `Contains` var skiftlägeskänslig och därför hittades bokningen bara om söktermens stora och små bokstäver matchade motsvarande del av det sparade namnet.
 
+
+
 ## 7. Vad ändrade du?
 
-Jag lade till en `StringComparison.OrdinalIgnoreCase` som argument i anropet till `Contains`. Detta gör så att sökningen i `CustomerName` efter `searchTerm` ignorerar skillnader mellan stora och små bokstäver.
+Jag lade till en `StringComparison.OrdinalIgnoreCase` som argument i anropet till `Contains`. Detta gör så att sökningen i `CustomerName` efter `searchTerm` ignorerar skillnader mellan stora och små bokstäver. 
+
+Felet hade även exempelvis kunnat lösas med att konvertera både `CustomerName` samt `searchTerm` till ett gemensamt tillstånd vid jämförelsen, med `ToLower()`  eller `ToUpper()`. Det hade kunnat se ut på följande sätt:
+
+```csharp
+
+public IReadOnlyList<Booking> Search(string searchTerm)
+{
+    return repository.GetAll()
+        .Where(booking =>
+            !booking.IsCancelled &&
+            booking.CustomerName.ToLower().Contains(searchTerm.ToLower()))
+        .ToList();
+}
+
+```
+
+Jag föredrar dock OrdinalIgnoreCase för den känns tydligare för den som läser koden, även om resultatet blir detsamma.
 
 
 
